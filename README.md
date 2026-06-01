@@ -9,6 +9,7 @@ state is lost on restart.
 
 - [Prerequisites](#prerequisites)
 - [Running the application](#running-the-application)
+- [Run with Docker](#run-with-docker)
 - [Running the tests](#running-the-tests)
 - [Accounts](#accounts)
 - [API](#api)
@@ -24,6 +25,9 @@ the project ships the Gradle wrapper (`./gradlew`).
 
 > If the build cannot locate a Java 25 toolchain automatically, set `JAVA_HOME` to a JDK 25 installation.
 
+> Prefer not to install Java 25? Build and run everything with **Docker** instead — see
+> [Run with Docker](#run-with-docker); Java and Gradle are then not needed on your machine.
+
 ---
 
 ## Running the application
@@ -34,6 +38,19 @@ the project ships the Gradle wrapper (`./gradlew`).
 
 The server starts on **port 8080**. There are no predefined accounts — any account id works and starts
 empty (see [Accounts](#accounts)).
+
+## Run with Docker
+
+No local Java or Gradle is required — only Docker. The image builds the boot jar inside a multi-stage
+build (the committed Gradle wrapper on Amazon Corretto) and runs it on a thin `amazoncorretto:25-alpine`
+base:
+
+```bash
+docker build -t tiny-ledger .
+docker run --rm -p 8080:8080 tiny-ledger
+```
+
+The API is then available at `http://localhost:8080` (see [API](#api)).
 
 ## Running the tests
 
