@@ -75,7 +75,7 @@ class LedgerControllerTest {
                           "type": "DEPOSIT",
                           "amount": "100.00",
                           "balanceAfter": "100.00",
-                          "timestamp": "2024-01-01T00:00:00Z"
+                          "timestamp": "2024-01-01T00:00:00.000Z"
                         }""", JsonCompareMode.STRICT));
 
         verify(ledgerService).deposit(eq("ACC-1"), eq(new BigDecimal("100.00")));
@@ -100,7 +100,7 @@ class LedgerControllerTest {
                           "type": "WITHDRAWAL",
                           "amount": "30.00",
                           "balanceAfter": "70.00",
-                          "timestamp": "2024-01-01T00:00:00Z"
+                          "timestamp": "2024-01-01T00:00:00.000Z"
                         }""", JsonCompareMode.STRICT));
 
         verify(ledgerService).withdraw(eq("ACC-1"), eq(new BigDecimal("30.00")));
@@ -126,7 +126,7 @@ class LedgerControllerTest {
                             "type": "DEPOSIT",
                             "amount": "50.00",
                             "balanceAfter": null,
-                            "timestamp": "2024-01-01T00:00:00Z"
+                            "timestamp": "2024-01-01T00:00:00.000Z"
                           },
                           {
                             "transactionId": "22222222-2222-2222-2222-222222222222",
@@ -134,7 +134,7 @@ class LedgerControllerTest {
                             "type": "WITHDRAWAL",
                             "amount": "10.00",
                             "balanceAfter": null,
-                            "timestamp": "2024-01-01T00:00:01Z"
+                            "timestamp": "2024-01-01T00:00:01.000Z"
                           }
                         ]""", JsonCompareMode.STRICT));
     }

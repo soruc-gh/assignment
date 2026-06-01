@@ -89,7 +89,7 @@ Base path: `/api/v1/accounts`
 # Deposit into a (new or existing) account -> 201, account created on first deposit
 curl -s -X POST http://localhost:8080/api/v1/accounts/ACC-1/deposits \
   -H "Content-Type: application/json" -d '{"amount": "100.00"}'
-# {"transactionId":"...","accountId":"ACC-1","type":"DEPOSIT","amount":"100.00","balanceAfter":"100.00","timestamp":"..."}
+# {"transactionId":"...","accountId":"ACC-1","type":"DEPOSIT","amount":"100.00","balanceAfter":"100.00","timestamp":"2026-06-01T15:33:55.126Z"}
 
 # Balance (an unseen account reads as 0.00)
 curl -s http://localhost:8080/api/v1/accounts/ACC-1/balance
@@ -114,6 +114,8 @@ curl -s http://localhost:8080/api/v1/accounts/ACC-1/transactions
 `balanceAfter` is populated on the deposit/withdrawal responses but is `null` in history entries — a
 per-entry running balance is only well-defined over the full ordered log, so returning a value there
 would be misleading.
+
+Timestamps are UTC ISO-8601 with millisecond precision (e.g. `2026-06-01T15:33:55.126Z`).
 
 ---
 
