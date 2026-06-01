@@ -46,13 +46,4 @@ class MoneyTest {
         assertThat(three.isLessThan(ten)).isTrue();
         assertThat(ten.isLessThan(three)).isFalse();
     }
-
-    @Test
-    void isNegative_reflectsSign() {
-        var ten = Money.of(new BigDecimal("10.00"));
-        var three = Money.of(new BigDecimal("3.00"));
-        assertThat(three.minus(ten).isNegative()).isTrue();
-        assertThat(ten.minus(three).isNegative()).isFalse();
-        assertThat(ten.minus(ten).isNegative()).isFalse();
-    }
 }

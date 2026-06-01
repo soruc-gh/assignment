@@ -5,7 +5,7 @@ import com.teya.tinyledger.domain.exception.InvalidAmountException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public record Money(BigDecimal amount) implements Comparable<Money> {
+public record Money(BigDecimal amount) {
 
     public Money {
         if (amount == null) throw new InvalidAmountException("Amount must not be null");
@@ -25,17 +25,8 @@ public record Money(BigDecimal amount) implements Comparable<Money> {
         return new Money(this.amount.subtract(other.amount));
     }
 
-    public boolean isNegative() {
-        return amount.compareTo(BigDecimal.ZERO) < 0;
-    }
-
     public boolean isLessThan(Money other) {
         return this.amount.compareTo(other.amount) < 0;
-    }
-
-    @Override
-    public int compareTo(Money other) {
-        return this.amount.compareTo(other.amount);
     }
 
     @Override
